@@ -1,4 +1,9 @@
-package org.xjets.hellostream.api;
+package org.xjets.hellostream.api
+
+import akka.NotUsed
+import akka.stream.scaladsl.Source
+import com.lightbend.lagom.scaladsl.api.{Service, ServiceCall}
+;
 
 /**
   * The Hello stream interface.
@@ -12,7 +17,6 @@ trait HelloStreamService extends Service {
 
   override final def descriptor = {
     import Service._
-
     named("hello-stream")
       .withCalls(
         namedCall("stream", stream)
