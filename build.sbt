@@ -7,8 +7,15 @@ scalaVersion in ThisBuild := "2.12.8"
 val macwire = "com.softwaremill.macwire" %% "macros" % "2.3.0" % "provided"
 val scalaTest = "org.scalatest" %% "scalatest" % "3.0.4" % Test
 
+lagomKafkaEnabled in ThisBuild := false
+lagomKafkaAddress in ThisBuild := "localhost:9092"
+
+lagomCassandraEnabled in ThisBuild := false
+lagomUnmanagedServices in ThisBuild := Map("cas_native" -> "http://localhost:9042")
+                                           
+
 lazy val `hello` = (project in file("."))
-  .aggregate(`hello-api`, `hello-impl`, `hello-stream-api`, `hello-stream-impl`)
+                   .aggregate(`hello-api`, `hello-impl`, `hello-stream-api`, `hello-stream-impl`)
 
 lazy val `hello-api` = (project in file("hello-api"))
   .settings(
@@ -48,5 +55,3 @@ lazy val `hello-stream-impl` = (project in file("hello-stream-impl"))
     )
   )
   .dependsOn(`hello-stream-api`, `hello-api`)
-
-lagomKafkaEnabled in ThisBuild := false
