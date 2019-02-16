@@ -1,5 +1,5 @@
 FROM openjdk:8
-RUN mkdir  /opt
-COPY ./hello /opt
+RUN mkdir /opt/hello
+COPY ./hello /opt/hello
 EXPOSE 9000
-RUN /opt/hello/bin/hello-impl
+CMD []
